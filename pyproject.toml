@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bubble-arena-injection"
+version = "0.1.0"
+description = "Membrane-arena 3x3 + Crystallize injection under a bubble split: external observer records REPORTED only, calibrator updates an assumed model only and can refuse."
+requires-python = ">=3.10"
+license = {text = "AGPL-3.0-only"}
+dependencies = [
+    # NumPy exception for this package ONLY (Jean's B2 decision): the
+    # arena engine is vendored unchanged and uses numpy throughout.
+    # No stdlib port: a port would change np.random.default_rng
+    # trajectories and break the bar-1 comparison.
+    "numpy",
+]
+
+[tool.setuptools.packages.find]
+include = ["membrane_arena_3x3*", "bubble_arena*"]
